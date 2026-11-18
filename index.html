@@ -32,6 +32,7 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-
 .wrap{max-width:1240px;margin:0 auto;padding-inline:20px;padding-block:28px 72px}
 h1,h2,h3,h4{font-family:var(--display);margin:0;text-wrap:balance}
 h1{font-size:clamp(56px,10vw,128px);line-height:.86;font-weight:900;text-transform:uppercase}
+header h1{margin-top:28px}
 h1 .l1{color:var(--accent);display:block}
 h1 .l2{color:var(--title2);display:block}
 h2{font-size:clamp(28px,3.6vw,42px);font-weight:900;line-height:1;text-transform:uppercase}
@@ -41,6 +42,8 @@ p{margin:0}
 header{display:grid;gap:16px;margin-bottom:12px;padding-block:8px 0}
 .tagrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
 .byline{display:inline-block;border:1.5px solid var(--fg);color:var(--fg);border-radius:999px;padding:6px 16px;font-weight:700;font-size:14px;line-height:1.2}
+.tagline{display:inline-flex;align-items:flex-start;gap:10px;font-family:var(--body);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg)}
+.tagline i{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;margin-top:.45em}
 .themebtn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--fg);background:transparent;color:var(--fg);border-radius:999px;padding:6px 14px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 .themebtn:hover{border-color:var(--accent);color:var(--accent)}
 .themebtn:focus-visible,.jump a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -49,8 +52,10 @@ header{display:grid;gap:16px;margin-bottom:12px;padding-block:8px 0}
 .chip{border:1px solid var(--line);padding:5px 12px;font-size:13px;background:var(--surface)}
 .chip b{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-right:6px}
 .jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding-block:12px;border-block:1px solid var(--line)}
-.jump a{color:var(--fg);text-decoration:none}
-.jump a:hover{color:var(--accent)}
+.jump{gap:8px}
+.jump a{color:var(--fg);text-decoration:none;border:1px solid var(--line);background:var(--surface);border-radius:0;padding:6px 13px;line-height:1.2;transition:border-color .15s,color .15s}
+.jump a:hover{color:var(--accent);border-color:var(--accent)}
+@media (max-width:700px){.jump{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.jump::-webkit-scrollbar{display:none}.jump a{flex:none}}
 
 section{margin-top:56px;scroll-margin-top:64px}
 .sec-head{display:grid;gap:8px;margin-bottom:20px}
@@ -129,6 +134,10 @@ td:first-child{font-family:var(--display);font-weight:900;font-size:24px;color:v
 .kv{display:grid;gap:3px;min-width:0}
 .kv .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--accent)}
 .kv .v.m{color:var(--muted)}
+.en{font-size:13px;color:var(--muted);display:grid;gap:2px}
+.en b{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.trig{display:flex;gap:6px;flex-wrap:wrap}
+.trig span{background:var(--chip);padding:3px 10px;font-size:12.5px}
 .carried{color:var(--accent);font-weight:700}
 .specs{background:var(--bg);border:1px solid var(--line);padding:10px 12px;display:grid;gap:4px;font-size:13.5px}
 .specs div{display:flex;justify-content:space-between;gap:12px}
@@ -219,7 +228,7 @@ html{scroll-behavior:smooth}
 @media (max-width:900px){.how{grid-template-columns:minmax(0,1fr)}}
 .mkts{margin-top:14px;background:var(--surface);border:1px solid var(--line);padding:18px;display:grid;gap:14px}
 .mkts h3{font-size:28px;font-weight:900;text-transform:uppercase;line-height:1}
-.mkts>p{font-size:14.5px;color:var(--muted);max-width:68ch}
+.mkts>p{font-size:14.5px;color:var(--muted);max-width:none}
 .mrow{display:grid;grid-template-columns:150px minmax(0,1fr) minmax(0,1.4fr);gap:8px 18px;align-items:baseline;border-top:1px solid var(--line);padding-top:12px}
 .mrow .mk{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 .mrow .q{font-family:var(--screen);font-size:15px;border:1px solid var(--line);border-radius:999px;padding:5px 14px;justify-self:start;background:var(--bg)}
@@ -247,20 +256,21 @@ html{scroll-behavior:smooth}
 <header>
   <div class="tagrow">
     <span class="byline">Google Ads lab by Simplificate</span>
+    <span class="tagline"><i aria-hidden="true"></i>Hide Fidelity · Search, Shopping, Performance Max</span>
     <button class="themebtn" id="themebtn" type="button"><span class="ti" aria-hidden="true"></span><span id="themelbl">Dark mode</span></button>
   </div>
-  <span class="eyebrow">Hide Fidelity · Search, Shopping, Performance Max</span>
   <h1><span class="l1">Google</span><span class="l2">Ads Lab</span></h1>
-  <p class="lead">An account plan and test programme for a six piece leather range. Four campaigns with one job each, one shared product feed, and sixteen tests across eight rounds. Each round changes one variable and runs in the Google Ads tool built for that kind of test.</p>
+  <p class="lead">An account plan and test programme for a six piece leather range. Four campaigns with one job each and one shared product feed. Flight 1 runs eight independent rounds, one variable each, in the Google Ads tool built for that test. Flight 2 builds the account from everything Flight 1 learned.</p>
   <div class="chips">
     <span class="chip"><b>Market</b> Netherlands, then Belgium and Germany</span>
     <span class="chip"><b>Campaigns</b> Search, Standard Shopping, Performance Max</span>
     <span class="chip"><b>Catalogue</b> 6 pieces, €85 to €295</span>
-    <span class="chip"><b>Tests</b> 8 rounds, 16 cells</span>
+    <span class="chip"><b>Flight 1</b> 8 rounds, 16 cells</span>
+    <span class="chip"><b>Flight 2</b> One account built from the findings</span>
   </div>
 </header>
 <nav class="jump" aria-label="Sections">
-  <a href="#how">How I work</a><a href="#approach">Approach</a><a href="#account">Account</a><a href="#range">Range</a><a href="#map">Test map</a><a href="#feed">Feed</a><a href="#search">Search</a><a href="#pmax">Performance Max</a><a href="#value">Value</a><a href="#method">Method</a>
+  <a href="#how">How I work</a><a href="#approach">Approach</a><a href="#account">Account</a><a href="#range">Range</a><a href="#map">Test map</a><a href="#feed">Feed</a><a href="#search">Search</a><a href="#pmax">Performance Max</a><a href="#value">Value</a><a href="#flight2">Flight 2</a><a href="#method">Method</a>
 </nav>
 
 <section id="how" style="margin-top:36px">
@@ -275,7 +285,7 @@ html{scroll-behavior:smooth}
     <div class="tile"><span class="eyebrow">Wording</span><strong>Words chosen for intent</strong><p>Copy follows what the searcher is trying to do. A category search gets proof and a reason to pay more. A brand search gets reassurance and a direct path to the product. A shopper comparing listings gets the words they typed, first.</p></div>
   </div>
   <div class="mkts">
-    <h3>Same boot, three markets</h3>
+    <h3>Keywords localised per country</h3>
     <p>The Singel Chelsea is one product with three search vocabularies. Keyword localisation gives each market its own keyword set, feed titles and ad copy.</p>
   </div>
 </section>
@@ -290,7 +300,7 @@ html{scroll-behavior:smooth}
     <div class="tile"><span class="eyebrow">01</span><strong>Start from the audit</strong><p>No round starts until the audit confirms that purchases and purchase value reach Google Ads correctly, with enhanced conversions and consent mode live for EU visitors, and the Merchant Center feed runs without disapprovals.</p></div>
     <div class="tile"><span class="eyebrow">02</span><strong>Give each campaign one job</strong><p>Brand Search covers the name. Search runs one campaign per product line, with ad groups split by intent and each one sent to the landing page that matches it. Standard Shopping carries the footwear and Performance Max carries the bags and belt. Each product sits in one campaign, so Shopping and Performance Max never compete for the same item.</p></div>
     <div class="tile"><span class="eyebrow">03</span><strong>Fix the feed before the bids</strong><p>Shopping and Performance Max have no keywords. The product title, image and product type decide which searches a product enters and whether it gets the click, so the feed carries the first tests.</p></div>
-    <div class="tile"><span class="eyebrow">04</span><strong>Test one variable at a time</strong><p>Each round has one variable, one primary read and one guardrail. Search copy runs as ad variations, settings and landing pages as custom experiments, and Performance Max creative as asset experiments. Where Google has no split test, the round runs on matched product groups and the risk is written down.</p></div>
+    <div class="tile"><span class="eyebrow">04</span><strong>Test one variable at a time</strong><p>Each round has one variable, one primary read and one guardrail. Search copy runs as ad variations, settings and landing pages as custom experiments, and Performance Max creative as asset experiments. Where Google has no split test, the round runs on matched product groups and the risk is written down. Flight 1 rounds run independently, and Flight 2 builds the account from what they show.</p></div>
   </div>
 </section>
 
@@ -301,7 +311,6 @@ html{scroll-behavior:smooth}
     <p>Each campaign answers a different kind of search. The structure keeps brand revenue separate from new demand, so every campaign reports on its own job.</p>
   </div>
   <div class="acct" id="acct"></div>
-  <div class="feedbar"><b>Merchant Center feed</b><span>One product source for Standard Shopping and Performance Max. <code>custom_label_0</code> assigns each product to its campaign and <code>custom_label_1</code> carries its margin band, used in round 7.</span></div>
   <div class="smap">
     <h3>Search map: product line by intent</h3>
     <p>Each product line runs as its own Search campaign. Inside it, ad groups split by intent, and every ad group sends the click to the page that answers that search. A searcher who names a product lands on it. A searcher still choosing lands on the collection.</p>
@@ -321,14 +330,28 @@ html{scroll-behavior:smooth}
 
 <section id="map">
   <div class="sec-head">
-    <span class="eyebrow">Test map</span>
-    <h2>Eight rounds, one variable each</h2>
-    <p>Every round compares the current setup with one challenger. The winner becomes the control for the next round that touches the same campaign.</p>
+    <span class="eyebrow">Flight 1 · Learn</span>
+    <h2>Eight independent rounds</h2>
+    <p>Every round compares the current setup with one challenger and answers one question about what this audience responds to. No result carries into the next round. Every finding goes into Flight 2.</p>
   </div>
   <div class="tbl"><table id="maptbl"><thead><tr><th>Round</th><th>Phase</th><th>Campaign</th><th>Variable</th><th>Test in Google Ads</th><th>Primary read</th><th>Guardrail</th></tr></thead><tbody></tbody></table></div>
 </section>
 
 <div id="phases"></div>
+
+<section id="flight2">
+  <div class="sec-head">
+    <span class="eyebrow">Flight 2 · Build</span>
+    <h2>One account built from every finding</h2>
+    <p>Flight 2 applies what the eight rounds learned. Each part of the account is rebuilt once, on the evidence from its own rounds. A round that ended without a significant result keeps the current setup.</p>
+  </div>
+  <div class="grid4">
+    <div class="tile"><span class="eyebrow">Rounds 1 and 2</span><strong>Feed</strong><p>Title structure and main image rolled out across the whole catalogue, for Standard Shopping and Performance Max.</p></div>
+    <div class="tile"><span class="eyebrow">Rounds 3 and 4</span><strong>Search</strong><p>The message that won written into every product line and intent, with the landing page mapping confirmed or corrected.</p></div>
+    <div class="tile"><span class="eyebrow">Rounds 5 and 6</span><strong>Performance Max</strong><p>Asset groups rewritten with the message that won, and the brand setting that showed the most new revenue.</p></div>
+    <div class="tile"><span class="eyebrow">Rounds 7 and 8</span><strong>Value</strong><p>The purchase value and customer acquisition goal that Smart Bidding works toward across the account.</p></div>
+  </div>
+</section>
 
 <section id="method">
   <div class="sec-head">
@@ -338,16 +361,13 @@ html{scroll-behavior:smooth}
   <div class="grid3">
     <div class="tile"><span class="eyebrow">Tracking</span><strong>Tracking confirmed first</strong><p>Purchases and purchase value reach Google Ads with enhanced conversions, and consent mode is live for EU visitors. Returns are uploaded as conversion adjustments, so bidding learns from kept revenue.</p></div>
     <div class="tile"><span class="eyebrow">Tools</span><strong>Google's own split where it exists</strong><p>Ad variations for Search copy, custom experiments for landing pages and settings, asset experiments for Performance Max. One asset experiment runs per campaign at a time, and its asset group stays locked until the test ends.</p></div>
-    <div class="tile"><span class="eyebrow">Length</span><strong>Four to six weeks per round</strong><p>Smart Bidding needs time to settle after a change, and purchases arrive days after the click. Four weeks is the floor and a round closes within six. No winner is called in the first two weeks.</p></div>
+    <div class="tile"><span class="eyebrow">Length</span><strong>Four to six weeks per round</strong><p>Google recommends running an experiment for at least four to six weeks, or one to two conversion cycles, and longer when purchases arrive days after the click. No reactive changes in the first two weeks.</p></div>
     <div class="tile"><span class="eyebrow">Control</span><strong>Nothing else moves</strong><p>Budgets, bid targets and feed fields stay fixed for the length of a round, apart from the variable. A change in the middle of a round restarts the read.</p></div>
     <div class="tile"><span class="eyebrow">Reading</span><strong>Call winners on confidence</strong><p>Google Ads reports whether a difference in an experiment is statistically significant. A result without significance counts as a tie, and the control stays.</p></div>
-    <div class="tile"><span class="eyebrow">Next</span><strong>The winner becomes the control</strong><p>The next round holds the winning title, image, message or setting and tests the next variable against it.</p></div>
+    <div class="tile"><span class="eyebrow">Flight 2</span><strong>Every finding goes to Flight 2</strong><p>Rounds run independently and nothing carries over. Each result is logged, and Flight 2 applies them to the account together.</p></div>
   </div>
 </section>
 
-<div class="foot">
-  <p>Companion pages: the Hide Fidelity Ad Lab covers paid social creative, and the Ecommerce Growth Lab covers what happens after the click.</p>
-</div>
 </div>
 
 <script>
@@ -404,9 +424,9 @@ function shopGrid(o){
 }
 function landing(o){
   const body=o.kind==='pdp'
-   ?`<div class="pdp"><div class="im"><img src="${IMG.tote}" alt="The Jordaan Tote in black leather with a cobalt pouch"></div><div class="info"><b>The Jordaan Tote</b><span class="pr">€295</span><small>100% leather. Detachable cobalt pouch. Fits a 13 inch laptop and a notebook.</small><div class="btn">Add to bag</div></div></div>`
-   :`<div class="colh">Bags</div><div class="col"><div class="c"><div class="im"><img src="${IMG.bag}" alt="The Prinsen Bag in cobalt leather"></div><b>The Prinsen Bag</b><span>€265</span></div><div class="c"><div class="im"><img src="${IMG.tote}" alt="The Jordaan Tote in black leather"></div><b>The Jordaan Tote</b><span>€295</span></div></div>`;
-  return `<div class="scr"><div class="sbox">leather tote bag</div><div class="browser"><div class="urlbar"><span class="u var">${esc(o.url)}</span></div><div class="lp"><div class="lphead"><img src="${IMG.logoI}" alt="Hide Fidelity"><span>Bags · Boots · Shoes · Belts</span></div>${body}</div></div></div>`;
+   ?`<div class="pdp"><div class="im"><img src="${IMG.tote}" alt="The Jordaan Tote in black leather with a cobalt pouch"></div><div class="info"><b>The Jordaan Tote</b><span class="pr">€295</span><small>100% leer. Afneembaar kobaltblauw etui. Past een 13 inch laptop en een notitieboek.</small><div class="btn">In winkelmand</div></div></div>`
+   :`<div class="colh">Tassen</div><div class="col"><div class="c"><div class="im"><img src="${IMG.bag}" alt="The Prinsen Bag in cobalt leather"></div><b>The Prinsen Bag</b><span>€265</span></div><div class="c"><div class="im"><img src="${IMG.tote}" alt="The Jordaan Tote in black leather"></div><b>The Jordaan Tote</b><span>€295</span></div></div>`;
+  return `<div class="scr"><div class="sbox">leren shopper</div><div class="browser"><div class="urlbar"><span class="u var">${esc(o.url)}</span></div><div class="lp"><div class="lphead"><img src="${IMG.logoI}" alt="Hide Fidelity"><span>Tassen · Laarzen · Schoenen · Riemen</span></div>${body}</div></div></div>`;
 }
 function assetGroup(o){
   const rows=a=>a.map(t=>`<div class="agrow"><span>${esc(t)}</span><i>${t.length}/${o.max||30}</i></div>`).join('');
@@ -442,24 +462,24 @@ const ROUNDS=[
   hyp:'Shopping has no keywords, so the title is the main signal Google uses to match a product to a search. The test reads whether search words in the first part of the title bring the boot into more category searches without losing the brand.',
   held:'Image, price, product type, bids and budget.',
   cells:[
-   {c:'A',role:'Control',name:'Brand first',mock:()=>shopGrid({q:'leather lace up boots',img:IMG.boot,alt:'The Amstel Boot on a cobalt background',title:'Hide Fidelity Amstel Boot',price:'€245',vt:1}),
-    sp:[['Hide Fidelity Amstel Boot',150]],lk:'Mechanism',lv:'Brand recall: the title reads well to people who already know the name.',
-    why:'Most small brands export titles this way. It works on brand searches and gives Google few words to match a category search such as leather lace up boots.'},
-   {c:'B',role:'Challenger',name:'Search words first',mock:()=>shopGrid({q:'leather lace up boots',img:IMG.boot,alt:'The Amstel Boot on a cobalt background',title:'Leather Lace Up Boots, Black with Cobalt Laces | Hide Fidelity Amstel',price:'€245',vt:1}),
-    sp:[['Leather Lace Up Boots, Black with Cobalt Laces | Hide Fidelity Amstel',150]],lk:'Lever',lv:'Self reference: the shopper sees the words they typed at the start of the title.',
+   {c:'A',role:'Control',name:'Brand first',mock:()=>shopGrid({q:'leren veterboots',img:IMG.boot,alt:'The Amstel Boot on a cobalt background',title:'Hide Fidelity Amstel Boot',price:'€245',vt:1}),
+    sp:[['Hide Fidelity Amstel Boot',150]],tr:['Familiarity','Reassurance'],lk:'Mechanism',lv:'Brand recall: the title reads well to people who already know the name.',
+    why:'This is the default most feeds start from. It works on brand searches and gives Google few words to match a category search such as leren veterboots.'},
+   {c:'B',role:'Challenger',name:'Search words first',mock:()=>shopGrid({q:'leren veterboots',img:IMG.boot,alt:'The Amstel Boot on a cobalt background',title:'Leren veterboots zwart met kobaltblauwe veters | Hide Fidelity Amstel',price:'€245',vt:1}),
+    sp:[['Leren veterboots zwart met kobaltblauwe veters | Hide Fidelity Amstel',150]],en:'Leather lace up boots, black with cobalt laces | Hide Fidelity Amstel',tr:['Relevance','Ease'],lk:'Lever',lv:'Self reference: the shopper sees the words they typed at the start of the title.',
     why:'Product type, material and colour come first, where the grid shows them, and the brand closes the title. The product can enter category searches that the brand first title misses.'}
   ]},
  {n:2,ph:'feed',title:'Main image',camp:'Standard Shopping · Footwear',prod:'The Singel Chelsea',variable:'Image background',
   test:'Matched product groups',testlong:'Merchant Center has no split test for images. The new image goes on one matched group while a second group keeps the current image, over the same weeks.',
   read:'Click through rate in Shopping',guard:'Conversion rate after the click, since the product page photo must still match',
   hyp:'In a Shopping grid the image is the first thing a shopper compares. The test reads whether the brand\'s cobalt field earns the glance or whether a plain background makes the boot easier to judge. Neither image carries text, logos or borders, which Merchant Center does not allow on the main image.',
-  held:'Title from the round 1 winner, price, bids and budget.',
+  held:'Current title, price, bids and budget.',
   cells:[
-   {c:'A',role:'Control',name:'Brand field',mock:()=>shopGrid({q:'leather chelsea boots',img:IMG.chelsea,alt:'The Singel Chelsea on a cobalt background',title:'Leather Chelsea Boots, Black with Cobalt Welt | Hide Fidelity Singel',price:'€225',vi:1}),
-    lk:'Lever',lv:'Contrast and isolation: black leather on cobalt stands apart in a grid of white backgrounds.',
+   {c:'A',role:'Control',name:'Brand field',mock:()=>shopGrid({q:'leren chelsea boots',img:IMG.chelsea,alt:'The Singel Chelsea on a cobalt background',title:'Hide Fidelity Singel Chelsea',price:'€225',vi:1}),
+    tr:['Curiosity','Desire'],lk:'Lever',lv:'Contrast and isolation: black leather on cobalt stands apart in a grid of white backgrounds.',
     why:'The same field runs in the brand\'s Instagram ads, so a shopper who has seen them recognises the product before reading the title.'},
-   {c:'B',role:'Challenger',name:'White studio',mock:()=>shopGrid({q:'leather chelsea boots',img:IMG.chelseaW,alt:'The Singel Chelsea on a white background',title:'Leather Chelsea Boots, Black with Cobalt Welt | Hide Fidelity Singel',price:'€225',vi:1}),
-    lk:'Lever',lv:'Processing fluency: a plain background matches what shoppers expect in a product grid.',
+   {c:'B',role:'Challenger',name:'White studio',mock:()=>shopGrid({q:'leren chelsea boots',img:IMG.chelseaW,alt:'The Singel Chelsea on a white background',title:'Hide Fidelity Singel Chelsea',price:'€225',vi:1}),
+    tr:['Confidence','Ease'],lk:'Lever',lv:'Processing fluency: a plain background matches what shoppers expect in a product grid.',
     why:'Google recommends a plain background for the main image. The boot is the only object in the frame, so shape, sole and stitch are easier to compare against other listings.'}
   ]},
  {n:3,ph:'search',title:'Message',camp:'Search · Shoes',prod:'The Keizer Loafer',variable:'Reason to believe in headline position 2',
@@ -468,26 +488,26 @@ const ROUNDS=[
   hyp:'Responsive search ads mix headlines on their own. Pinning one headline to position 2 makes it show on every impression, so the message becomes the only thing that differs between arms.',
   held:'Headline 1 pinned, keywords, final URL, bids and budget.',
   cells:[
-   {c:'A',role:'Control',name:'Craft proof',mock:()=>searchAd({q:'leather penny loafers',path:'loafers',h:['Leather Penny Loafers','100% Leather, Cobalt Sole','Hide Fidelity Amsterdam'],vi:1,d:'The Keizer Loafer in black 100% leather on a chunky solid cobalt sole.',dv:1}),
-    sp:[['Leather Penny Loafers',30],['100% Leather, Cobalt Sole',30],['Hide Fidelity Amsterdam',30],['The Keizer Loafer in black 100% leather on a chunky solid cobalt sole.',90]],
+   {c:'A',role:'Control',name:'Craft proof',mock:()=>searchAd({q:'leren penny loafers',path:'loafers',h:['Leren Penny Loafers','100% Leer, Kobaltblauwe Zool','Hide Fidelity Amsterdam'],vi:1,d:'Onze Keizer Loafer in zwart 100% leer op een stevige kobaltblauwe zool.',dv:1}),
+    sp:[['Leren Penny Loafers',30],['100% Leer, Kobaltblauwe Zool',30],['Hide Fidelity Amsterdam',30],['Onze Keizer Loafer in zwart 100% leer op een stevige kobaltblauwe zool.',90]],en:'Leather penny loafers | 100% leather, cobalt sole. Our Keizer Loafer in black 100% leather on a solid cobalt sole.',tr:['Pride','Confidence'],
     lk:'Lever',lv:'Effort heuristic: visible material and finish signal the work behind the product.',
     why:'At €215 the loafer sits next to cheaper loafers in the same results. Material and sole give the searcher a reason to pay more before the click.'},
-   {c:'B',role:'Challenger',name:'Numbered run',mock:()=>searchAd({q:'leather penny loafers',path:'loafers',h:['Leather Penny Loafers','Made in Numbered Runs','Hide Fidelity Amsterdam'],vi:1,d:'The Keizer Loafer in black 100% leather, made in small numbered runs.',dv:1}),
-    sp:[['Leather Penny Loafers',30],['Made in Numbered Runs',30],['Hide Fidelity Amsterdam',30],['The Keizer Loafer in black 100% leather, made in small numbered runs.',90]],
+   {c:'B',role:'Challenger',name:'Numbered run',mock:()=>searchAd({q:'leren penny loafers',path:'loafers',h:['Leren Penny Loafers','Gemaakt in Genummerde Oplage','Hide Fidelity Amsterdam'],vi:1,d:'We maken de Keizer Loafer in kleine genummerde oplagen, in zwart 100% leer.',dv:1}),
+    sp:[['Leren Penny Loafers',30],['Gemaakt in Genummerde Oplage',30],['Hide Fidelity Amsterdam',30],['We maken de Keizer Loafer in kleine genummerde oplagen, in zwart 100% leer.',90]],en:'Leather penny loafers | Made in a numbered run. We make the Keizer Loafer in small numbered runs, in black 100% leather.',tr:['Exclusivity','Desire'],
     lk:'Lever',lv:'Scarcity: a small run tells the searcher the pair will not stay in stock indefinitely.',
     why:'Runs only when the numbered runs are real and the run size shows on the product page, so the claim holds after the click.'}
   ]},
  {n:4,ph:'search',title:'Landing page',camp:'Search · Bags',prod:'The Jordaan Tote',variable:'Final URL',
   test:'Custom experiment',testlong:'A custom experiment copies the tote ad group with a new final URL and splits searches 50/50 by cookie.',
   read:'Conversion rate and conversion value per click',guard:'Average order value',
-  hyp:'A search for a leather tote bag names a product type, while the shopper may still be choosing between bags. The test reads whether the tote page or the bags page converts more of those clicks.',
-  held:'Ads with the round 3 winning message structure, keywords, bids and budget.',
+  hyp:'A search for leren shopper names a product type, and the search map sends product searches to the product page. This round checks that mapping against the bags page, for shoppers who may still be choosing between bags.',
+  held:'Current ads, keywords, bids and budget.',
   cells:[
    {c:'A',role:'Control',name:'Product page',mock:()=>landing({kind:'pdp',url:'hidefidelity.com/bags/jordaan'}),
-    lk:'Mechanism',lv:'Fewer steps: the searcher lands on the product, the price and the add to bag button.',
+    tr:['Ease','Certainty'],lk:'Mechanism',lv:'Fewer steps: the searcher lands on the product, the price and the add to bag button.',
     why:'The range has one tote, and the query asks for a tote. Landing on the product removes a click between the search and the basket.'},
    {c:'B',role:'Challenger',name:'Bags page',mock:()=>landing({kind:'col',url:'hidefidelity.com/bags'}),
-    lk:'Lever',lv:'Comparison: two bags side by side help the shopper decide which one fits.',
+    tr:['Curiosity','Control'],lk:'Lever',lv:'Comparison: two bags side by side help the shopper decide which one fits.',
     why:'Category searches often start before the shopper has picked a bag. Both bags carry the same cobalt detail, so the shopper stays on site when the tote is not the one.'}
   ]},
  {n:5,ph:'pmax',title:'Asset group message',camp:'Performance Max · Bags and belt',prod:'The Prinsen Bag',variable:'Headlines and descriptions',
@@ -496,18 +516,18 @@ const ROUNDS=[
   hyp:'Performance Max builds ads from the assets it is given, so the test changes the whole text set at once and keeps the visuals common. The asset group locks while the test runs.',
   held:'Images, video, listing group, audience signal, bidding and budget.',
   cells:[
-   {c:'A',role:'Control',name:'Product facts',mock:()=>assetGroup({h:['Hide Fidelity Prinsen Bag','Cobalt Leather Flap Bag','Fits a 13 Inch Laptop'],d:['Cobalt flap bag in 100% leather with a black clasp and top handle.']}),
-    lk:'Mechanism',lv:'Feature clarity: the text describes the bag and lets the image carry the appeal.',
+   {c:'A',role:'Control',name:'Product facts',mock:()=>assetGroup({h:['Hide Fidelity Prinsen Bag','Kobaltblauwe Leren Tas','Past een 13 Inch Laptop'],d:['Kobaltblauwe flaptas in 100% leer met zwarte sluiting en handvat.']}),
+    en:'Hide Fidelity Prinsen Bag | Cobalt leather bag | Fits a 13 inch laptop. Cobalt flap bag in 100% leather with a black clasp and handle.',tr:['Confidence','Ease'],lk:'Mechanism',lv:'Feature clarity: the text describes the bag and lets the image carry the appeal.',
     why:'This is the set most stores launch with. It is accurate and lets Google match the bag to product searches, with no reason given to choose it.'},
-   {c:'B',role:'Challenger',name:'Winning message',mock:()=>assetGroup({h:['Hide Fidelity Prinsen Bag','100% Leather, Cobalt Detail','Fits a 13 Inch Laptop'],d:['Cobalt flap bag in 100% leather, finished with cobalt thread and a black clasp.']}),
-    lk:'Lever',lv:'<span class="carried">Effort heuristic, carried from round 3</span>',carried:1,
-    why:'Shown with cell 3A as the example winner. The message that won on Search moves into the asset group, so the round reads whether it holds across YouTube, Discover, Gmail and Shopping placements.'}
+   {c:'B',role:'Challenger',name:'Craft message',mock:()=>assetGroup({h:['Hide Fidelity Prinsen Bag','100% Leer, Kobaltblauw Garen','Past een 13 Inch Laptop'],d:['Onze flaptas in 100% leer, afgewerkt met kobaltblauw garen en een zwarte sluiting.']}),
+    en:'Hide Fidelity Prinsen Bag | 100% leather, cobalt thread | Fits a 13 inch laptop. Our flap bag in 100% leather, finished with cobalt thread and a black clasp.',tr:['Pride','Desire'],lk:'Lever',lv:'Effort heuristic: material and finish signal the work behind the bag.',
+    why:'The text gives the shopper a reason to choose the bag at €265. Images stay common, so the message is the only difference between the arms.'}
   ]},
  {n:6,ph:'pmax',title:'Brand exclusions',camp:'Performance Max · Bags and belt',prod:'Bags and belt',variable:'Brand exclusion list',
   test:'Before and after',testlong:'Four weeks without exclusions, then four weeks with the brand list applied. Brand Search runs in both periods. The comparison is sequential, so seasonality is the stated risk.',
   read:'Performance Max conversion value from non brand searches, and new customer share',guard:'Total brand revenue across Brand Search and Performance Max',
   hyp:'Brand searches convert at a high rate, so they lift the return Performance Max reports. Excluding the brand shows how much revenue the campaign creates on its own, while Brand Search catches the brand clicks at its own cost.',
-  held:'Asset group from the round 5 winner, listing group, bidding and budget.',
+  held:'Current asset group, listing group, bidding and budget.',
   cells:[
    {c:'A',role:'Control',name:'No exclusions',mock:()=>settings({title:'Brand exclusions',sub:'Campaign settings',rows:[{k:'Brand list: Hide Fidelity',s:'Excludes brand searches on Search and Shopping inventory',sw:false,v:1},{k:'Brand Search campaign',s:'Brand and product names',sw:true},{k:'Bidding',s:'Maximise conversion value',val:'Target ROAS, unchanged'}]}),
     lk:'Mechanism',lv:'Performance Max can serve on Hide Fidelity searches and claim those orders.',
@@ -519,21 +539,21 @@ const ROUNDS=[
  {n:7,ph:'value',title:'Purchase value',camp:'Performance Max · Bags and belt',prod:'The Gracht Belt and the Jordaan Tote',variable:'Value reported per purchase',
   test:'Custom experiment',testlong:'The treatment arm optimises on a second purchase action whose value is gross margin, built from custom_label_1. Where the account cannot run this as an experiment, the round runs before and after with the risk written down.',
   read:'Gross margin from Google Ads orders',guard:'Total conversion value and order count',
-  hyp:'Revenue bidding counts every euro of sales the same. A €295 tote is worth 3.5 belts to Google, whatever each one keeps for the business. The margins shown are example figures for the sample.',
+  hyp:'Revenue bidding counts every euro of sales the same. A €295 tote is worth 3.5 belts to Google, whatever each one keeps for the business.',
   held:'Assets, listing group, budget and the return target expressed on each arm\'s own value.',
   cells:[
-   {c:'A',role:'Control',name:'Bid on revenue',mock:()=>valueBars({belt:85,tote:295,c:0,note:'Value equals the product price.'}),
+   {c:'A',role:'Control',name:'Bid on revenue',mock:()=>settings({title:'Purchase value Google bids on',sub:'Per order',rows:[{k:'Gracht Belt',s:'Value reported per purchase',val:'€85, the product price',v:1},{k:'Jordaan Tote',s:'Value reported per purchase',val:'€295, the product price'},{k:'Bidding',s:'Maximise conversion value',val:'Target ROAS on revenue'}]}),
     lk:'Mechanism',lv:'Value equals price, so Smart Bidding favours the most expensive product.',
     why:'The default setup. It grows revenue, and it can buy tote orders at a cost that leaves little margin.'},
-   {c:'B',role:'Challenger',name:'Bid on margin',mock:()=>valueBars({belt:51,tote:133,c:1,note:'Value equals gross margin. Example margins: belt 60%, tote 45%.'}),
+   {c:'B',role:'Challenger',name:'Bid on margin',mock:()=>settings({title:'Purchase value Google bids on',sub:'Per order',rows:[{k:'Gracht Belt',s:'Value reported per purchase',val:'Gross margin of the order',v:1},{k:'Jordaan Tote',s:'Value reported per purchase',val:'Gross margin of the order'},{k:'Bidding',s:'Maximise conversion value',val:'Target ROAS on margin'}]}),
     lk:'Mechanism',lv:'Value equals what the order keeps, so Smart Bidding favours the products that keep the most per euro spent.',
-    why:'The belt\'s share of value rises against the tote. Spend moves toward orders that keep more of each sale, which is the number the business runs on.'}
+    why:'Each product counts by what the order keeps for the business. Spend moves toward the orders with the most margin, which is the number the business runs on.'}
   ]},
  {n:8,ph:'value',title:'New customers',camp:'Performance Max · Bags and belt',prod:'Bags and belt',variable:'Customer acquisition goal',
   test:'Custom experiment',testlong:'The treatment arm switches the customer acquisition goal to bid higher for new customers. Google identifies existing customers from an uploaded customer list and site tags. Where the experiment is not available, the round runs before and after.',
-  read:'New customer share and new customer conversion value',guard:'Gross margin per order from the round 7 winner',
+  read:'New customer share and new customer conversion value',guard:'Gross margin per order',
   hyp:'A buyer who already owns a Hide Fidelity piece may return without an ad. The test reads whether paying more for first orders brings in buyers the business would not reach otherwise.',
-  held:'Purchase value from the round 7 winner, assets, listing group and budget.',
+  held:'Current purchase value, assets, listing group and budget.',
   cells:[
    {c:'A',role:'Control',name:'Bid equally',mock:()=>settings({title:'Customer acquisition',sub:'Campaign settings',rows:[{k:'Goal',s:'How Google treats new and existing customers',val:'Bid equally for new and existing customers',v:1},{k:'Customer list',s:'Uploaded buyers, refreshed monthly',sw:true},{k:'Bidding',s:'Maximise conversion value',val:'Target ROAS, unchanged'}]}),
     lk:'Mechanism',lv:'Every purchase carries the same value, whoever makes it.',
@@ -545,7 +565,7 @@ const ROUNDS=[
 ];
 
 /* ---------- render ---------- */
-document.getElementById('acct').innerHTML=CAMPS.map(c=>`<div class="camp${c.feed?' feedfed':''}"><span class="type">${c.type}${c.feed?' · fed by the feed':''}</span><h3>${c.n}</h3><p>${c.job}</p><dl>${c.rows.map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></div>`).join('');
+document.getElementById('acct').innerHTML=CAMPS.map(c=>`<div class="camp${c.feed?' feedfed':''}"><span class="type">${c.type}${c.feed?' · Merchant Center feed':''}</span><h3>${c.n}</h3><p>${c.job}</p><dl>${c.rows.map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl></div>`).join('');
 
 document.getElementById('rangegrid').innerHTML=RANGE.map(p=>`<div class="tile prod"><div class="pic"><img src="${IMG[p.k]}" alt="${p.n}"></div>
   <div class="nm"><strong>${p.n}</strong><span>${p.p}</span></div>
@@ -558,7 +578,9 @@ function cellHtml(r,c){
   return `<article class="card"><div class="bar"><span class="badge">Round ${r.n} · Cell ${c.c}</span><span class="role${c.role==='Challenger'?' ch':''}">${c.role}</span></div>
    <h4>${c.name}</h4><div class="stage">${c.mock()}</div>
    <div class="meta">${c.sp?specs(c.sp):''}
+    ${c.en?`<div class="en"><b>In English</b>${esc(c.en)}</div>`:''}
     <div class="kv"><span class="k">${c.lk}</span><span class="v">${c.lv}</span></div>
+    ${c.tr?`<div class="kv"><span class="k">Emotional triggers</span><div class="trig">${c.tr.map(x=>`<span>${x}</span>`).join('')}</div></div>`:''}
     <div class="kv"><span class="k">Why this angle</span><span class="v m">${c.why}</span></div></div></article>`;
 }
 document.getElementById('phases').innerHTML=PHASES.map(p=>`<section class="phase" id="${p.id}">
